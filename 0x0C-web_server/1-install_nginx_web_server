@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# This script installs and configures Nginx on Ubuntu 20.04 LTS
+
+# Update package lists
+sudo apt-get update
+
+# Install Nginx
+sudo apt-get install -y nginx
+
+# Configure Nginx to listen on port 80
+sudo sed -i 's/# server_names_hash_bucket_size 64;/server_names_hash_bucket_size 64;/' /etc/nginx/nginx.conf
+
+# Create a custom HTML page
+sudo bash -c "echo 'Hello World!' > /var/www/html/index.html"
+
+# Restart Nginx using the nginx.pid file
+sudo service nginx restart
