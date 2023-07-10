@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# Update package lists and install nginx
+sudo apt-get update
+sudo apt-get -y install nginx
+
+# Configure nginx to redirect /redirect_me to www.lapololucy.tech
+sudo rm /etc/nginx/sites-enabled/default
+sudo touch /etc/nginx/sites-available/custom_404
+sudo ln -s /etc/nginx/sites-available/custom_404 /etc/nginx/sites-enabled/
+echo "
+server {
+    #listen 80 default_server;
+    #listen [::]:80 default_server;
+
+    root /var/www/html;
+
+    index index.html index.htm;
+
+    server_name 155601-web-01;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    error_page 404 /404.html;
+    location = /404.html {
+        internal;
+        root /usr/share/nginx/html;
+        return 404 'Ceci n\'est pas une page.';
+    }
+}" | sudo tee /etc/nginx/sites-available/custom_404
+sudo systemctl restart nginx
