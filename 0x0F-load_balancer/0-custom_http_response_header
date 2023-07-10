@@ -14,7 +14,7 @@ sudo mv 404.html /var/www/html
 echo "server {
         listen 80 default_server;
         listen [::]:80 default_server;
-        add_header X-Served-By $HOSTNAME;
+        add_header X-Served-By 155601-web-01;
         root /var/www/html;
         index index.html;
         location /redirect_me {
