@@ -33,7 +33,7 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 frontend www.odoki.tech-http-frontend
-    bind *:80
+    bind *:443
     mode http
     default_backend webservers
 
